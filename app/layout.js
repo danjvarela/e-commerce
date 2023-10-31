@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={cn(inter.className, "bg-slate-200")}>
-        <div className="relative container mx-auto max-w-4xl">
+        <div className="relative container mx-auto max-w-4xl text-slate-900">
           <Header />
           {children}
         </div>
