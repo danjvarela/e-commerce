@@ -1,3 +1,5 @@
+"use client"
+
 import { cn } from "@/utils/cn"
 import Link from "./ui/link"
 import Button from "./ui/button"

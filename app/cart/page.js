@@ -1,28 +1,14 @@
 "use client"
 
-import ProductCard from "@/components/product-card"
-import Link from "@/components/ui/link"
-import { useCart } from "@/hooks/cart"
+import CartProducts from "@/components/cart-products"
+import { useIsClient } from "@uidotdev/usehooks"
 
 export default function CartPage() {
-  const { cart, totalItems } = useCart()
-
-  if (totalItems === 0)
-    return (
-      <div className="p-4 flex items-center justify-center whitespace-break-spaces">
-        Your cart is empty.{" "}
-        <Link href="/" className="text-base">
-          Add products
-        </Link>
-      </div>
-    )
+  const isClient = useIsClient()
 
   return (
     <div className="p-4 bg-slate-100 flex flex-col gap-4 w-full">
-      {Object.entries(cart).map(([, { product }]) => {
-        console.log("produict", product)
-        return <ProductCard key={product.id} {...product} context="cart" />
-      })}
+      {isClient && <CartProducts />}
     </div>
   )
 }
