@@ -22,10 +22,7 @@ export default function ProductCard({ context = "products", ...product }) {
       />
       <div className="flex flex-col flex-1 gap-4">
         <div className="flex flex-col gap-1">
-          <Link
-            className="font-semibold leading-none text-base"
-            href={`/products/${id}`}
-          >
+          <Link className="font-semibold leading-none text-base" href="#">
             {title}
           </Link>
 
