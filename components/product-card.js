@@ -1,6 +1,7 @@
 import { cn } from "@/utils/cn"
 import Link from "./ui/link"
 import Button from "./ui/button"
+import { useCart } from "@/hooks/cart"
 
 export default function ProductCard({
   id,
@@ -10,6 +11,8 @@ export default function ProductCard({
   description,
   image,
 }) {
+  const { addToCart } = useCart()
+  
   return (
     <div
       className={cn(
@@ -43,7 +46,7 @@ export default function ProductCard({
               currency: "PHP",
             })}
           </span>
-          <Button>Add to cart</Button>
+          <Button onClick={() => addToCart(id)}>Add to cart</Button>
         </div>
       </div>
     </div>

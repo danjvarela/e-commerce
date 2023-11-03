@@ -1,5 +1,5 @@
 import Link from "@/components/ui/link"
-import { ShoppingCart } from "lucide-react"
+import ShoppingCart from "../shopping-cart"
 
 export default function Header() {
   return (
@@ -9,9 +9,7 @@ export default function Header() {
       </Link>
 
       <div className="flex gap-4">
-        <Link href="/">
-          <ShoppingCart />
-        </Link>
+        <ShoppingCart />
       </div>
     </div>
   )
