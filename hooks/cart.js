@@ -11,7 +11,7 @@ export const useCart = () => {
 
       return {
         ...prevCart,
-        [product.id]: { product, count: prevCart[product.id] + 1 },
+        [product.id]: { product, count: prevCart[product.id].count + 1 },
       }
     })
   }
