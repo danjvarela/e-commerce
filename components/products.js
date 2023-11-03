@@ -1,11 +1,15 @@
-"use client"
-
-import { useProducts } from "@/hooks/products"
 import ProductCard from "./product-card"
 import { Loader2 } from "lucide-react"
+import { API_URL } from "@/utils/constants"
 
-export default function Products() {
-  const products = useProducts()
+const getProducts = async () => {
+  const res = await fetch(`${API_URL}/products?limit=10`)
+  const json = await res.json()
+  return json
+}
+
+export default async function Products() {
+  const products = await getProducts()
 
   if (!products.length)
     return (
