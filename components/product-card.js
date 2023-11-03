@@ -3,15 +3,9 @@ import Link from "./ui/link"
 import Button from "./ui/button"
 import { useCart } from "@/hooks/cart"
 
-export default function ProductCard({
-  id,
-  title,
-  price,
-  category,
-  description,
-  image,
-}) {
-  const { addToCart } = useCart()
+export default function ProductCard({ context = "products", ...product }) {
+  const { id, title, price, category, description, image } = product
+  const { addToCart, itemCount, removeFromCart, removeItem } = useCart()
 
   return (
     <div
@@ -46,20 +40,20 @@ export default function ProductCard({
               currency: "PHP",
             })}
           </span>
-          <Button
-            onClick={() =>
-              addToCart({
-                id,
-                title,
-                price,
-                category,
-                description,
-                image,
-              })
-            }
-          >
-            Add to cart
-          </Button>
+          {context === "products" && (
+            <Button onClick={() => addToCart(product)}>Add to cart</Button>
+          )}
+          {context === "cart" && (
+            <div className="flex items-center gap-4">
+              <span>Items in cart: {itemCount(id)}</span>
+
+              <Button onClick={() => addToCart(product)}>Add 1 item</Button>
+              <Button onClick={() => removeItem(id)}>Remove 1 item</Button>
+              <Button onClick={() => removeFromCart(id)}>
+                Remove from cart
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     </div>

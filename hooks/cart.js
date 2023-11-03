@@ -21,5 +21,26 @@ export const useCart = () => {
     return acc
   }, 0)
 
-  return { cart, addToCart, totalItems }
+  const itemCount = (productId) => {
+    return cart[productId].count
+  }
+
+  const removeFromCart = (productId) => {
+    setCart((prevCart) => {
+      const newCart = prevCart
+      delete newCart[productId]
+      return newCart
+    })
+  }
+
+  const removeItem = (productId) => {
+    setCart((prevCart) => {
+      const newCart = prevCart
+      newCart[productId].count -= 1
+      if (newCart[productId].count === 0) delete newCart[productId]
+      return newCart
+    })
+  }
+
+  return { cart, addToCart, totalItems, itemCount, removeFromCart, removeItem }
 }
