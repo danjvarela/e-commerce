@@ -4,7 +4,7 @@ import Button from "./ui/button"
 import { useCart } from "@/hooks/cart"
 
 export default function ProductCard({ context = "products", ...product }) {
-  const { id, title, price, category, description, image } = product
+  const { id, title, price, category, image } = product
   const { addToCart, itemCount, removeFromCart, removeItem } = useCart()
 
   return (
