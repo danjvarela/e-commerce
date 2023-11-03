@@ -1,3 +1,5 @@
+"use client"
+
 import { useCart } from "@/hooks/cart"
 import ProductCard from "./product-card"
 import Link from "./ui/link"
