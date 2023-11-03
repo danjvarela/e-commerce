@@ -12,7 +12,7 @@ export default function ProductCard({
   image,
 }) {
   const { addToCart } = useCart()
-  
+
   return (
     <div
       className={cn(
@@ -46,7 +46,20 @@ export default function ProductCard({
               currency: "PHP",
             })}
           </span>
-          <Button onClick={() => addToCart(id)}>Add to cart</Button>
+          <Button
+            onClick={() =>
+              addToCart({
+                id,
+                title,
+                price,
+                category,
+                description,
+                image,
+              })
+            }
+          >
+            Add to cart
+          </Button>
         </div>
       </div>
     </div>

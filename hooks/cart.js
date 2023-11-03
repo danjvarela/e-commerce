@@ -1,22 +1,25 @@
 import { useLocalStorage } from "@uidotdev/usehooks"
-import { useEffect } from "react"
 
 export const useCart = () => {
   const [cart, setCart] = useLocalStorage("cart", {})
 
-  const addToCart = (id) => {
+  const addToCart = (product) => {
     setCart((prevCart) => {
-      if (!prevCart[id]) {
-        return { ...prevCart, [id]: 1 }
+      if (!prevCart[product.id]) {
+        return { ...prevCart, [product.id]: { product, count: 1 } }
       }
 
-      return { ...prevCart, [id]: prevCart[id] + 1 }
+      return {
+        ...prevCart,
+        [product.id]: { product, count: prevCart[product.id] + 1 },
+      }
     })
   }
 
-  useEffect(() => {
-    console.log("cart", cart)
-  }, [cart])
+  const totalItems = Object.entries(cart).reduce((acc, entry) => {
+    acc += entry[1].count
+    return acc
+  }, 0)
 
-  return { cart, addToCart }
+  return { cart, addToCart, totalItems }
 }
